@@ -6,9 +6,10 @@ public class Q {
     boolean valueSet = false;
 
     synchronized int get() {
-
+        System.out.println("Get called");
         while (!valueSet)
             try {
+                System.out.println("Get waiting");
                 wait();
             } catch (InterruptedException e) {
                 System.out.println("InterruptedException caught");
@@ -21,9 +22,10 @@ public class Q {
     }
 
     synchronized void put(int n) {
-
+        System.out.println("Put called: " + n);
         while (valueSet)
             try {
+                System.out.println("Put waiting");
                 wait();
             } catch (InterruptedException e) {
                 System.out.println("InterruptedException caught");
